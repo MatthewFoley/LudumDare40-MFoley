@@ -9,6 +9,10 @@ public class TruckController : MonoBehaviour {
 
 	public Transform resetPosition;
 	public Rigidbody truckMass;
+	public PackageCollector collector;
+	public int packages;
+	public float massModifer;
+	public Camera truckCamera;
 
 	public float maxTorque = 50f;
 	public float steering = 2f;
@@ -19,6 +23,9 @@ public class TruckController : MonoBehaviour {
 	void Update()
 	{
 		UpdateWheels ();
+		packages = collector.storedPackages;
+		massModifer = 15 * packages;
+		//truckMass.mass += massModifer;
 		currentForward = transform.eulerAngles.y;;
 		if (Input.GetButtonDown ("Jump")) 
 		{
@@ -31,6 +38,11 @@ public class TruckController : MonoBehaviour {
 			{
 				wheelColliders [i].motorTorque = 0;
 			}
+		}
+
+		if (wheelColliders [3].motorTorque < 0) 
+		{
+			truckCamera.transform.Rotate (Vector3.up * 180);
 		}
 	}
 
