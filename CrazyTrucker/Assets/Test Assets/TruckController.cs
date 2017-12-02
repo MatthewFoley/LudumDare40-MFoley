@@ -12,19 +12,20 @@ public class TruckController : MonoBehaviour {
 
 	public float maxTorque = 50f;
 	public float steering = 2f;
+	public float currentForward;
 
-	void Start()
-	{
-		//truckMass.centerOfMass += new Vector3 (0, 0, 1);
-	}
+
 
 	void Update()
 	{
 		UpdateWheels ();
+		currentForward = transform.eulerAngles.y;;
 		if (Input.GetButtonDown ("Jump")) 
 		{
+
 			transform.position += new Vector3 (0, 2, 0);
-			transform.rotation = new Quaternion(0, 0, 0,0);
+			transform.eulerAngles = new Vector3 (0, currentForward, 0);
+
 
 			for (int i = 0; i < 4; i++) 
 			{
