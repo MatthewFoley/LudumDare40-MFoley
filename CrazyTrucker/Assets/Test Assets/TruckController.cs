@@ -12,7 +12,6 @@ public class TruckController : MonoBehaviour {
 	public PackageCollector collector;
 	public int packages;
 	public float massModifer;
-	public Camera truckCamera;
 
 	public float maxTorque = 50f;
 	public float steering = 2f;
@@ -42,7 +41,6 @@ public class TruckController : MonoBehaviour {
 
 		if (wheelColliders [3].motorTorque < 0) 
 		{
-			truckCamera.transform.Rotate (Vector3.up * 180);
 		}
 	}
 
