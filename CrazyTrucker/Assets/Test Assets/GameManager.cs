@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
 
@@ -28,6 +29,11 @@ public class GameManager : MonoBehaviour {
 		crateCounter.text = crateCount.ToString ();
 		timer.text = tempTimer.ToString ();
 		score.text = playerScore.ToString ();
+
+		if (playerTimer < 0) 
+		{
+			SceneManager.LoadScene ("GameOver");
+		}
 	}
 
 
