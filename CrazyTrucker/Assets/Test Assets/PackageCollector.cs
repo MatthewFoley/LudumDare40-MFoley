@@ -8,6 +8,14 @@ public class PackageCollector : MonoBehaviour {
 	public int storedPackages;
 	public Rigidbody truckMass;
 	public float massModifer;
+	public AudioSource pickup;
+	bool firstPackage;
+	public GameObject tutorial2;
+
+	void Start()
+	{
+		firstPackage = true;
+	}
 
 
 	void OnTriggerEnter(Collider col)
@@ -18,6 +26,13 @@ public class PackageCollector : MonoBehaviour {
 			storedPackages++;
 			massModifer = 20 * storedPackages;
 			truckMass.mass += massModifer;
+			pickup.Play ();
+			if (firstPackage == true) 
+			{
+				firstPackage = false;
+				tutorial2.SetActive (true);
+				
+			}
 		}
 	}
 }

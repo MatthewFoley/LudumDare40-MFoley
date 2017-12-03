@@ -9,6 +9,14 @@ public class DropOffPoint : MonoBehaviour {
 	public GameManager manager;
 	float  score = 0;
 	float timer;
+	public AudioSource dropOff;
+	bool firstDropOff;
+	public GameObject tutorial3;
+
+	void Start()
+	{
+		firstDropOff = true;
+	}
 
 	void OnTriggerEnter(Collider col)
 	{
@@ -22,6 +30,13 @@ public class DropOffPoint : MonoBehaviour {
 				manager.playerScore = score;
 				packages.storedPackages = 0;
 				truckMass.mass = 400;
+				dropOff.Play ();
+				if (firstDropOff == true) 
+				{
+					firstDropOff = false;
+					tutorial3.SetActive (true);
+
+				}
 			}
 		}
 	}
